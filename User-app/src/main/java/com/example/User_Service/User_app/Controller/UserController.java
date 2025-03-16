@@ -30,9 +30,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
     }
 
+
+//    @GetMapping(value = "/{id}/ratings", produces = "application/json")
+//    public RatingDTO getUserRatings(@PathVariable Long id) {
+//        return ratingServiceClient.getRatings(id);
+//    }
+
     @GetMapping("/{id}/ratings")
-    public List<RatingDTO> getUserRatings(@PathVariable Long id) {
-        return ratingServiceClient.getRatings(id);
+    public ResponseEntity<RatingDTO> getUserRating(@PathVariable Long id) {
+        RatingDTO rating = ratingServiceClient.getRatings(id);
+        return ResponseEntity.ok(rating);
     }
 }
 
